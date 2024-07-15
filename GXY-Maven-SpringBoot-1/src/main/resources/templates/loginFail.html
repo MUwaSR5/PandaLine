@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录失败提示页面</title>
+</head>
+<body>
+
+<script th:inline="javascript">
+    alert([[${loginMessage}]]);
+</script>
+
+<script type="text/javascript">
+
+
+    // 延时跳转函数
+    function redirect() {
+        // 使用setTimeout函数，在3秒后执行跳转操作
+        setTimeout(function() {
+            // 跳转到目标页面，这里假设目标页面的URL为 "/target-page"
+            window.location.href="http://localhost:8888/task/login";
+        }, 1000); // 3000毫秒 = 3秒
+    }
+
+    // 页面加载完成时调用跳转函数
+    window.onload = redirect;
+</script>
+</body>
+</html>
