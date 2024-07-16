@@ -22,7 +22,7 @@
 <body>
 
 
-
+<button type="submit" class="btn btn-primary" id="loginOut" name="loginOut">注销</button>
 <table class="table table-sm" border="1">
     <thead>
     <tr style="text-align:center;vertical-align:middle;">
@@ -88,5 +88,21 @@
     {
         window.location.href="http://localhost:8888/user/userQuery";
     });
+
+    $("#loginOut").click(function()
+    {
+        $.ajax({
+            type:"POST", // 请求类型 GET/POST
+            url:"http://localhost:8888/user/loginOut", // 请求路径
+            dataType:"text", // 预期服务器返回的数据类型
+            contentType:'application/json;charset=utf-8',//如果要发送json字符串，此属性不能少；否则，会出现后台会报异常
+            data:"",
+            success:function(data){
+                alert(data);
+                window.location.href="http://localhost:8888/task/login";
+            }
+        });
+    });
+
 </script>
 </html>

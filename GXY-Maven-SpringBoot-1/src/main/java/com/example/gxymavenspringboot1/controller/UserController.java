@@ -145,5 +145,14 @@ public class UserController {
         return "userDeleteResult";
     }
 
+    //注销账号，退出登录，返回登录界面
+    @PostMapping("/loginOut")
+    @ResponseBody
+    public String loginOut(){
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "注销账号成功";
+    }
+
 
 }
