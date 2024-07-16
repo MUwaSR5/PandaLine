@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务修改界面</title>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jquery/2.1.3/jquery.min.js"></script>
+    <!-- CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- jQuery and JavaScript Bundle with Popper -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+<table class="table table-sm" border="1">
+    <tr>
+        <td>FBA预约码</td>
+        <td><input type="text" class="form-control" placeholder="请输入FBA预约码" id="fbaCode" th:value="${fbaCode}">
+        </td>
+    </tr>
+    <tr>
+        <td>FBA预Id</td>
+        <td><input type="text" class="form-control" placeholder="请输入FBA预Id" id="fbaId" th:value="${fbaId}"></td>
+    </tr>
+    <tr>
+        <td>货物管理番号</td>
+        <td><input type="text" class="form-control" placeholder="请输入货物管理番号" id="thingNo" th:value="${thingNo}"></td>
+    </tr>
+    <tr>
+        <td>货物信息</td>
+        <td><input type="text" class="form-control" placeholder="请输入货物信息" id="thingMessage" th:value="${thingMessage}"></td>
+    </tr>
+    <tr>
+        <td>装卸方式</td>
+        <td><input type="text" class="form-control" placeholder="托盘/手卸" id="loadWay" th:value="${loadWay}"></td>
+    </tr>
+    <tr>
+        <td>集荷时间</td>
+        <td><input type="date" class="form-control"  id="collectTime" style="width:400px;" th:value="${collectTime}"></td>
+    </tr>
+    <tr>
+        <td>集荷地点</td>
+        <td><input type="text" class="form-control" placeholder="请输入集荷地点" id="collectAddress" th:value="${collectAddress}"></td>
+    </tr>
+    <tr>
+        <td>纳品时间</td>
+        <td><input type="date" class="form-control"  id="sendTime" style="width:400px;" th:value="${sendTime}"></td>
+    </tr>
+    <tr>
+        <td>纳品地址</td>
+        <td><input type="text" class="form-control" placeholder="请输入纳品地址" id="sendAddress" th:value="${sendAddress}"></td>
+    </tr>
+    <tr>
+        <td>车辆型号</td>
+        <td><input type="text" class="form-control" placeholder="请输入车辆型号" id="carType" th:value="${carType}"></td>
+    </tr>
+    <tr>
+        <td>备注</td>
+        <td><input type="text" class="form-control" placeholder="备注" id="remarkMessage" th:value="${remarkMessage}">
+            <input type="hidden"  id="id" th:value="${id}">
+        </td>
+    </tr>
+</table>
+<div>
+    <button type="submit" class="btn btn-primary" style="display:block;margin:0 auto" id="updateSubmit" name="updateSubmit">确认修改</button>
+    <br>
+    <button type="backMain" class="btn btn-primary" style="display:block;margin:0 auto" id="backMain" name="backMain">返回主页</button>
+</div>
+</body>
+<script type="text/javascript">
+    $("#updateSubmit").click(function()
+    {
+        $.ajax({
+            type:"POST", // 请求类型 GET/POST
+            url:"http://localhost:8888/task/taskUpdate", // 请求路径
+            dataType:"text", // 预期服务器返回的数据类型
+            contentType:'application/json;charset=utf-8',//如果要发送json字符串，此属性不能少；否则，会出现后台会报异常
+            data:
+                JSON.stringify({
+                    id:$("#id").val(),
+                    loadWay:$("#loadWay").val(),
+                    collectTime:$("#collectTime").val(),
+                    collectAddress:$("#collectAddress").val(),
+                    sendTime:$("#sendTime").val(),
+                    sendAddress:$("#sendAddress").val(),
+                    carType:$("#carType").val(),
+                    remarkMessage:$("#remarkMessage").val(),
+                    thingNo:$("#thingNo").val(),
+                    thingMessage:$("#thingMessage").val(),
+                    fbaCode:$("#fbaCode").val(),
+                    fbaId:$("#fbaId").val(),
+                }),
+            success:function(data){
+                alert("任务信息更新成功");
+            }
+
+        });
+    });
+    $("#backMain").click(function()
+    {
+        window.location.href="http://localhost:8888/task/mainPage";
+    });
+</script>
+</html>
