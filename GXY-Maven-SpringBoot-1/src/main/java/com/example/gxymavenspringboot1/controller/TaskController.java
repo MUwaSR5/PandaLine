@@ -178,14 +178,7 @@ public class TaskController {
             task.setId(Integer.parseInt(taskUpdateMessageMap.get("id").toString()));
             task.setCusId(cusId);
             task.setLoadWay(taskUpdateMessageMap.get("loadWay").toString());
-
-
-            taskUpdateMessageMap.get("collectTime").toString();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            Date collectTimeDate = new Date();
-            String collectTimeResult=format.format(collectTimeDate);
-            task.setCollectTime(collectTimeResult);
-
+            task.setCollectTime(taskUpdateMessageMap.get("collectTime").toString());
             task.setCollectAddress(taskUpdateMessageMap.get("collectAddress").toString());
             task.setSendTime(taskUpdateMessageMap.get("sendTime").toString());
             task.setSendAddress(taskUpdateMessageMap.get("sendAddress").toString());
